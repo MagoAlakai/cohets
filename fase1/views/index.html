@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+    <!--Formulario Car-->
+    <div class="container"> 
+        <h1 class="mt-4 text-center">Ejercicio Vehículos</h1>
+        <form id="myFormId" class="form-inline mt-5 align-items-center" name="myForm">
+            <div>
+                <div class="form-row form-group" class="d-flex">
+                    <div class="m-2 d-block">
+                        <label class="h4 justify-content-left mb-2" for="plate">ID Cohete</label>
+                        <input type="text" class="form-control" placeholder="Enter ID" id="id_cohete">
+                        <div class="invalid-feedback" id="errorId_cohete"></div>
+                    </div>
+                    <div class="m-2 d-block">
+                        <label class="h4 justify-content-left mb-2" for="brand">Propulsores</label>
+                        <input type="text" class="form-control" placeholder="Enter quantity" id="num_propulsores">
+                        <div class="invalid-feedback" id="errorNum_propulsores"></div>
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <button type="submit" class="btn btn-primary m-2">Create Cohete</button>
+                </div>              
+            </div>
+        </form> 
+
+    <!--Mostrar Cohetes-->
+    <div class="border container invisible mt-4 pb-2 mb-5" id="show_cohete">
+        <h6 class="pt-3">Cohetes:</h6>
+        <div class="row ml-4">
+            <div id="col"></div>
+        </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="/fase1/models/cohete.js"></script>
+    <script src="/fase1/models/propulsor.js"></script>
+    <script src="/fase1/controllers/controller.js"></script>
+</body>
+</html>

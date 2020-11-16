@@ -1,89 +1,65 @@
-let car: Car;
+let cohete: Cohete;
 
-//CAR
-
-//Creación de funciones necesarias para crear, controlar y mostra car
-function validar_matricula(plate:any) {
-	var regex = /^[0-9]{4}[A-Za-z]{3}$/;
-	return regex.test(plate) ? true : false;
+//Creación de funciones necesarias para crear y mostrar cohete
+function createCohete(id:string){
+    cohete = new Cohete(id);
+    console.log(cohete);
+    return cohete;
 }
 
-function createCar(plate:any, brand:any, color:any){
-    car = new Car(plate.value, brand.value, color.value);
-    console.log(car);
-    return car;
+let showCohete = (text: string)=>{
+    let coheteProperties: any = document.getElementById("col");
+    coheteProperties.appendChild(createList(text));
 }
 
-function showCar(car: Car){
-    let carProperties: any = document.getElementsByClassName("col");
-    let carArr = Array.prototype.slice.call(carProperties);
-    for(let element in car){
-        for(let i = 0; i < carArr.length; i++){
-            if(element === 'plate' && i === 0){
-                carArr[i].innerHTML += car[element];
-            }else if(element === 'brand' && i === 1){
-                carArr[i].innerHTML += car[element];
-            }else if(element === 'color' && i === 2){
-                carArr[i].innerHTML += car[element];
-            }
-        }
-    } 
+let createList = (text:string)=> {
+    let li = document.createElement('li');
+    li.textContent = text;
+    return li;
 }
+
+
 //CREACION VARIABLES Y ASIGNACION
 
-//Recogida de datos del formulario Car
+//Recogida de datos del formulario Cohete
 
 let myForm = (<HTMLFormElement>document.getElementById('myFormId'));
-let plate: HTMLInputElement = (document.getElementById('plate') as HTMLInputElement);
-let brand: HTMLInputElement = (document.getElementById('brand') as HTMLInputElement);
-let color: HTMLInputElement = (document.getElementById('color') as HTMLInputElement);
+let id: HTMLInputElement = (document.getElementById('id_cohete') as HTMLInputElement);
+let num_propulsores: HTMLInputElement = (document.getElementById('num_propulsores') as HTMLInputElement);
 
-//Creación variable formulario Wheel
-let myFormWheel = (<HTMLFormElement>document.getElementById('myFormIdWheel'));
 
-//ONSUBMIT DE FORM CAR Y CONTROL
+//ONSUBMIT DE FORM COHETE Y CONTROL
 myForm.onsubmit = (event) => {
     let acumErrores = 0;
 
-    if(plate.value == "") {
-        plate.classList.add('is-invalid');
-		(<HTMLElement>document.getElementById("errorPlate")).textContent = "Este campo es obligatorio";
-        acumErrores ++;
-    }else if(!validar_matricula(plate.value)){
-		plate.classList.add("is-invalid");
-		(<HTMLElement>document.getElementById("errorPlate")).textContent = "Esta matrícula no cumple el formato";
-		acumErrores ++;
-	}
-
-    if(brand.value == "") {
-        brand.classList.add('is-invalid');
-		(<HTMLElement>document.getElementById("errorBrand")).textContent = "Este campo es obligatorio";
+    if(id.value.length !== 9){
+        id.classList.add('is-invalid');
+		(<HTMLElement>document.getElementById("errorId_cohete")).textContent = "El Id debe ser de 9 caracteres";
         acumErrores ++;
     }
 
-    if(color.value == "") {
-        color.classList.add('is-invalid');
-		(<HTMLElement>document.getElementById("errorColor")).textContent = "Este campo es obligatorio";
-        acumErrores ++;
+    if(num_propulsores.value == "") {
+        num_propulsores.classList.add('is-invalid');
+		(<HTMLElement>document.getElementById("errorNum_propulsores")).textContent = "Este campo es obligatorio";
+		acumErrores ++;
     }
 
     if (acumErrores === 0){
-        plate.classList.remove('is-invalid');
-        brand.classList.remove('is-invalid');
-        color.classList.remove('is-invalid');
+        id.classList.remove('is-invalid');
+        num_propulsores.classList.remove('is-invalid');
 	}
 
-//Crear car y mostrar en DOM
-    createCar(plate, brand, color);
+//Crear cohete y mostrar en DOM
+    createCohete(id.value);
 
-    if(validar_matricula(plate.value) && brand.value !== '' && color.value !== ''){
-        let show_car = (<HTMLElement>document.getElementById("show_car"));
-        show_car.classList.remove('invisible');
-        showCar(car);
-        plate.value = "";
-        brand.value = "";
-        color.value = "";
-        myFormWheel.classList.remove('invisible');
+    if(acumErrores === 0){
+        let show_cohete: HTMLDivElement = document.getElementById("show_cohete") as HTMLDivElement;
+        show_cohete.classList.remove('invisible');
+        let cohete_ID = cohete.id.toUpperCase();
+        let text = `El Cohete ${cohete_ID} tiene ${num_propulsores.value} propulsores.`;
+        showCohete(text);
+        id.value = '';
+        num_propulsores.value = '';
     }
 
 event.preventDefault()
@@ -91,40 +67,27 @@ event.preventDefault()
 
 //EVENT LISTENER CAR
 
-let verifyCar = (event:any)=>{
+let verifyCohete = (event:any)=>{
 
-    if((<HTMLInputElement>event.target).value ==='' && (<HTMLInputElement>event.target).value === plate.value) {
+    if((<HTMLInputElement>event.target).value.length !== 9 && (<HTMLInputElement>event.target).value === id.value) {
         (<HTMLElement>event.target).classList.add('is-invalid');
-        (<HTMLElement>document.getElementById("errorPlate")).textContent = "Este campo es obligatorio";
+        (<HTMLElement>document.getElementById("errorId_cohete")).textContent = "El Id debe ser de 9 caracteres";
     }else{
         (<HTMLElement>event.target).classList.remove('is-invalid');
     }
 
-    if((<HTMLInputElement>event.target).value ==='' &&  (<HTMLInputElement>event.target).value === brand.value){
+    if((<HTMLInputElement>event.target).value ==='' &&  (<HTMLInputElement>event.target).value === num_propulsores.value){
         (<HTMLElement>event.target).classList.add('is-invalid');
-        (<HTMLElement>document.getElementById("errorBrand")).textContent = "Este campo es obligatorio";
+        (<HTMLElement>document.getElementById("errorNum_propulsores")).textContent = "Este campo es obligatorio";
     }else{
         (<HTMLElement>event.target).classList.remove('is-invalid');
     }
     
-    if((<HTMLInputElement>event.target).value ==='' &&  (<HTMLInputElement>event.target).value === color.value){
-        (<HTMLElement>event.target).classList.add('is-invalid');
-        (<HTMLElement>document.getElementById("errorColor")).textContent = "Este campo es obligatorio";
-    }else{
-        (<HTMLElement>event.target).classList.remove('is-invalid');
-    }
-    
-    if(!validar_matricula(plate.value)){
-        (<HTMLElement>event.target).classList.add('is-invalid');
-        (<HTMLElement>document.getElementById("errorPlate")).textContent = "Esta matrícula no cumple el formato";
-    }else{
-        (<HTMLElement>event.target).classList.remove('is-invalid');
-    }
 }
 
-myForm.addEventListener('blur', verifyCar, true);
+myForm.addEventListener('blur', verifyCohete, true);
 
-//WHEELS
+/*//WHEELS
 
 //Declaración de funciones
 
@@ -220,4 +183,4 @@ let verifyWheel = (event:any)=>{
     }
 }
 
-myFormWheel.addEventListener('blur', verifyWheel, true);
+myFormWheel.addEventListener('blur', verifyWheel, true);*/
