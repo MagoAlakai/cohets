@@ -65,7 +65,7 @@ myForm.onsubmit = (event) => {
 event.preventDefault()
 }
 
-//EVENT LISTENER CAR
+//EVENT LISTENER COHETE
 
 let verifyCohete = (event:any)=>{
 
@@ -82,105 +82,7 @@ let verifyCohete = (event:any)=>{
     }else{
         (<HTMLElement>event.target).classList.remove('is-invalid');
     }
-    
 }
 
 myForm.addEventListener('blur', verifyCohete, true);
 
-/*//WHEELS
-
-//Declaración de funciones
-
-let showWheel = (text: string)=>{
-    let wheelProperties: any = document.getElementById("col");
-    wheelProperties.appendChild(createLi(text));
-}
-
-let createLi = (text:string)=> {
-    let li = document.createElement('li');
-    li.textContent = text;
-    return li;
-}
-
-//ONSUBMIT DE FORM WHEEL Y CONTROL
-
-var acumErrores = 0;
-myFormWheel.onsubmit = (event) => {
-
-    for(let i = 1; i <= 4; i++){
-        let wheel_brand: HTMLInputElement = (document.getElementById('wheel' + i +'_brand') as HTMLInputElement); 
-        let wheel_diameter: HTMLInputElement = (document.getElementById('wheel' + i + '_diameter') as HTMLInputElement);
-
-    //Control entrada datos ruedas
-
-        if(wheel_brand.value == "") {
-            wheel_brand.classList.add('is-invalid');
-            (<HTMLElement>document.getElementById("errorWheel" + i +"_brand")).textContent = "Este campo es obligatorio";
-            acumErrores ++;
-        }else{
-            acumErrores === 0;
-        }
-    
-        if(wheel_diameter.value == "") {
-            wheel_diameter.classList.add('is-invalid');
-            (<HTMLElement>document.getElementById("errorWheel" + i +"_diameter")).textContent = "Este campo es obligatorio";
-            acumErrores ++;
-        }else if(!(parseFloat(wheel_diameter.value) > 0.4 && parseFloat(wheel_diameter.value) < 2)){
-            wheel_diameter.classList.add('is-invalid');
-            (<HTMLElement>document.getElementById("errorWheel" + i +"_diameter")).textContent = 'El diámetro de la rueda ' + i +' no es correcto';
-            acumErrores ++;
-        }else{
-            acumErrores === 0;
-        }
-
-        if(acumErrores === 0){
-            let wheel = new Wheel(wheel_brand.value, parseFloat(wheel_diameter.value));
-            car.addWheel(wheel);
-        }
-    }
-
-    //Mostrar wheels por pantalla
-
-    if(acumErrores === 0){
-        let show_wheels = (<HTMLDivElement>document.getElementById("show_wheels"));
-        show_wheels.classList.remove('invisible');
-        for(let i = 0; i < car.wheels.length; i++){
-            let wheel_brand: HTMLInputElement = (document.getElementById('wheel' + (i + 1)  +'_brand') as HTMLInputElement); 
-            let wheel_diameter: HTMLInputElement = (document.getElementById('wheel' + (i + 1) + '_diameter') as HTMLInputElement);
-            let text = `Wheel ${i + 1} = Brand: ${car.wheels[i].brand} & Diameter: ${car.wheels[i].diameter} `;
-            showWheel(text);
-            //Limpiar Inputs
-            wheel_brand.value = "";
-            wheel_diameter.value = "";
-            event.preventDefault();
-        }
-    }
-    
-    event.preventDefault();
-}
-
-//EVENT LISTENER WHEELS
-
-let verifyWheel = (event:any)=>{
-    for(let i = 1; i <= 4; i++){
-        let wheel_brand: HTMLInputElement = (document.getElementById('wheel' + i +'_brand') as HTMLInputElement);
-        let wheel_diameter: HTMLInputElement = (document.getElementById('wheel' + i + '_diameter') as HTMLInputElement);
-
-        if((<HTMLInputElement>event.target).value ==='') {
-            (<HTMLElement>event.target).classList.add('is-invalid');
-            if((<HTMLInputElement>event.target).value === wheel_brand.value){
-                (<HTMLElement>document.getElementById("errorWheel" + i +"_brand")).textContent = "Este campo es obligatorio";
-            }else if((<HTMLInputElement>event.target).value === wheel_diameter.value){
-                (<HTMLElement>document.getElementById("errorWheel" + i +"_diameter")).textContent = "Este campo es obligatorio";
-            }
-        }else if(parseFloat((<HTMLInputElement>event.target).value) < 0.4 || parseFloat((<HTMLInputElement>event.target).value) >= 2){
-            (<HTMLElement>event.target).classList.add('is-invalid');
-            (<HTMLElement>document.getElementById("errorWheel" + i +"_diameter")).textContent = 'El diámetro de la rueda ' + i +' no es correcto';
-        }else{
-            (<HTMLElement>event.target).classList.remove('is-invalid');
-            acumErrores = 0;
-        }
-    }
-}
-
-myFormWheel.addEventListener('blur', verifyWheel, true);*/

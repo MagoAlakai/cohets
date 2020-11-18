@@ -5,8 +5,12 @@ function createCohete(id) {
     console.log(cohete);
     return cohete;
 }
-var showCohete = function (text) {
+var showCohete1 = function (text) {
     var coheteProperties = document.getElementById("col");
+    coheteProperties.appendChild(createList(text));
+};
+var showCohete2 = function (text) {
+    var coheteProperties = document.getElementById("col2");
     coheteProperties.appendChild(createList(text));
 };
 var createList = function (text) {
@@ -43,7 +47,7 @@ myForm.onsubmit = function (event) {
         show_cohete.classList.remove('invisible');
         var cohete_ID = cohete.id.toUpperCase();
         var text = "El Cohete " + cohete_ID + " tiene " + num_propulsores.value + " propulsores.";
-        showCohete(text);
+        showCohete1(text);
         id.value = '';
         num_propulsores.value = '';
     }
@@ -52,7 +56,7 @@ myForm.onsubmit = function (event) {
 //EVENT LISTENER COHETE
 var verifyCohete = function (event) {
     if (event.target.value.length !== 9 && event.target.value === id.value) {
-        event.target.classList.add('is-invalid');
+        id.classList.add('is-invalid');
         document.getElementById("errorId_cohete").textContent = "El Id debe ser de 9 caracteres";
     }
     else {
@@ -67,3 +71,57 @@ var verifyCohete = function (event) {
     }
 };
 myForm.addEventListener('blur', verifyCohete, true);
+//COHETE 2
+//CREACION VARIABLES Y ASIGNACION
+//Recogida de datos del formulario Cohete
+var myForm2 = document.getElementById('myFormId2');
+var id2 = document.getElementById('id_cohete2');
+var num_propulsores2 = document.getElementById('num_propulsores2');
+//ONSUBMIT DE FORM COHETE 2 Y CONTROL
+myForm2.onsubmit = function (event) {
+    var acumErrores = 0;
+    if (id2.value.length !== 9) {
+        id2.classList.add('is-invalid');
+        document.getElementById("errorId_cohete2").textContent = "El Id debe ser de 9 caracteres";
+        acumErrores++;
+    }
+    if (num_propulsores2.value == "") {
+        num_propulsores2.classList.add('is-invalid');
+        document.getElementById("errorNum_propulsores2").textContent = "Este campo es obligatorio";
+        acumErrores++;
+    }
+    if (acumErrores === 0) {
+        id2.classList.remove('is-invalid');
+        num_propulsores2.classList.remove('is-invalid');
+    }
+    //Crear cohete 2 y mostrar en DOM
+    createCohete(id2.value);
+    if (acumErrores === 0) {
+        var show_cohete2 = document.getElementById("show_cohete2");
+        show_cohete2.classList.remove('invisible');
+        var cohete_ID2 = cohete.id.toUpperCase();
+        var text = "El Cohete " + cohete_ID2 + " tiene " + num_propulsores2.value + " propulsores.";
+        showCohete2(text);
+        id2.value = '';
+        num_propulsores2.value = '';
+    }
+    event.preventDefault();
+};
+//EVENT LISTENER COHETE 2
+var verifyCohete2 = function (event) {
+    if (event.target.value.length !== 9 && event.target.value === id2.value) {
+        id2.classList.add('is-invalid');
+        document.getElementById("errorId_cohete2").textContent = "El Id debe ser de 9 caracteres";
+    }
+    else {
+        event.target.classList.remove('is-invalid');
+    }
+    if (event.target.value === '' && event.target.value === num_propulsores2.value) {
+        event.target.classList.add('is-invalid');
+        document.getElementById("errorNum_propulsores2").textContent = "Este campo es obligatorio";
+    }
+    else {
+        event.target.classList.remove('is-invalid');
+    }
+};
+myForm2.addEventListener('blur', verifyCohete2, true);
