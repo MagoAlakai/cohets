@@ -21,7 +21,7 @@ var createList = function (text) {
 };
 var createPotencia1 = function (text, id, propulsores) {
     var i;
-    var num_prop = propulsores;
+    var num_prop = parseInt(propulsores);
     text = id + ": ";
     for (i = 1; i <= num_prop; i++) {
         var potencia = prompt("Introduce potencia del propulsor " + i);
@@ -36,11 +36,11 @@ var createPotencia1 = function (text, id, propulsores) {
 };
 var createPotencia2 = function (text, id, propulsores) {
     var i;
-    var num_prop = propulsores;
+    var num_prop = parseInt(propulsores);
     text = id + ": ";
     for (i = 1; i <= num_prop; i++) {
         var potencia = prompt("Introduce potencia del propulsor " + i);
-        if (i === num_prop) {
+        if (i == num_prop) {
             text += potencia + '.';
         }
         else {

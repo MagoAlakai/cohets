@@ -26,7 +26,7 @@ let createList = (text:string)=> {
 
 let createPotencia1 = (text: any, id:any, propulsores: any) =>{
     let i: number;
-    let num_prop = propulsores;
+    let num_prop = parseInt(propulsores);
     text = `${id}: `;
     for(i = 1; i <= num_prop; i++){
         let potencia:any = prompt(`Introduce potencia del propulsor ${i}`);
@@ -41,11 +41,11 @@ let createPotencia1 = (text: any, id:any, propulsores: any) =>{
 
 let createPotencia2 = (text: any, id:any, propulsores: any) =>{
     let i: number;
-    let num_prop = propulsores;
+    let num_prop = parseInt(propulsores);
     text = `${id}: `;
     for(i = 1; i <= num_prop; i++){
         let potencia:any = prompt(`Introduce potencia del propulsor ${i}`);
-        if(i === num_prop){
+        if(i == num_prop){
             text += potencia + '.';
         }else{
             text += potencia + ', ';
