@@ -1,4 +1,5 @@
 var cohete;
+var text;
 //Creación de funciones necesarias para crear y mostrar cohete
 function createCohete(id) {
     cohete = new Cohete(id);
@@ -17,6 +18,36 @@ var createList = function (text) {
     var li = document.createElement('li');
     li.textContent = text;
     return li;
+};
+var createPotencia1 = function (text, id, propulsores) {
+    var i;
+    var num_prop = propulsores;
+    text = id + ": ";
+    for (i = 1; i <= num_prop; i++) {
+        var potencia = prompt("Introduce potencia del propulsor " + i);
+        if (i === num_prop) {
+            text += potencia + '.';
+        }
+        else {
+            text += potencia + ', ';
+        }
+    }
+    showCohete1(text);
+};
+var createPotencia2 = function (text, id, propulsores) {
+    var i;
+    var num_prop = propulsores;
+    text = id + ": ";
+    for (i = 1; i <= num_prop; i++) {
+        var potencia = prompt("Introduce potencia del propulsor " + i);
+        if (i === num_prop) {
+            text += potencia + '.';
+        }
+        else {
+            text += potencia + ', ';
+        }
+    }
+    showCohete2(text);
 };
 //CREACION VARIABLES Y ASIGNACION
 //Recogida de datos del formulario Cohete
@@ -46,10 +77,11 @@ myForm.onsubmit = function (event) {
         var show_cohete = document.getElementById("show_cohete");
         show_cohete.classList.remove('invisible');
         var cohete_ID = cohete.id.toUpperCase();
-        var text = "El Cohete " + cohete_ID + " tiene " + num_propulsores.value + " propulsores.";
-        showCohete1(text);
+        createPotencia1(text, cohete_ID, num_propulsores.value);
         id.value = '';
         num_propulsores.value = '';
+        myForm.classList.add('d-none');
+        myForm2.classList.remove('invisible');
     }
     event.preventDefault();
 };
@@ -100,10 +132,10 @@ myForm2.onsubmit = function (event) {
         var show_cohete2 = document.getElementById("show_cohete2");
         show_cohete2.classList.remove('invisible');
         var cohete_ID2 = cohete.id.toUpperCase();
-        var text = "El Cohete " + cohete_ID2 + " tiene " + num_propulsores2.value + " propulsores.";
-        showCohete2(text);
+        createPotencia2(text, cohete_ID2, num_propulsores2.value);
         id2.value = '';
         num_propulsores2.value = '';
+        myForm2.classList.add('d-none');
     }
     event.preventDefault();
 };

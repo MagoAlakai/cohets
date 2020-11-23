@@ -1,4 +1,5 @@
 let cohete: Cohete;
+let text:any;
 
 //Creación de funciones necesarias para crear y mostrar cohete
 function createCohete(id:any ){
@@ -21,6 +22,36 @@ let createList = (text:string)=> {
     let li = document.createElement('li');
     li.textContent = text;
     return li;
+}
+
+let createPotencia1 = (text: any, id:any, propulsores: any) =>{
+    let i: number;
+    let num_prop = propulsores;
+    text = `${id}: `;
+    for(i = 1; i <= num_prop; i++){
+        let potencia:any = prompt(`Introduce potencia del propulsor ${i}`);
+        if(i === num_prop){
+            text += potencia + '.';
+        }else{
+            text += potencia + ', ';
+        }
+    }
+    showCohete1(text);
+}
+
+let createPotencia2 = (text: any, id:any, propulsores: any) =>{
+    let i: number;
+    let num_prop = propulsores;
+    text = `${id}: `;
+    for(i = 1; i <= num_prop; i++){
+        let potencia:any = prompt(`Introduce potencia del propulsor ${i}`);
+        if(i === num_prop){
+            text += potencia + '.';
+        }else{
+            text += potencia + ', ';
+        }
+    }
+    showCohete2(text);
 }
 
 
@@ -60,11 +91,12 @@ myForm.onsubmit = (event) => {
     if(acumErrores === 0){
         let show_cohete: HTMLDivElement = document.getElementById("show_cohete") as HTMLDivElement;
         show_cohete.classList.remove('invisible');
-        var cohete_ID = cohete.id.toUpperCase();
-        var text = `El Cohete ${cohete_ID} tiene ${num_propulsores.value} propulsores.`;
-        showCohete1(text);
+        let cohete_ID = cohete.id.toUpperCase();
+        createPotencia1(text, cohete_ID, num_propulsores.value);
         id.value = '';
         num_propulsores.value = '';
+        myForm.classList.add('d-none');
+        myForm2.classList.remove('invisible');
     }
 
 event.preventDefault()
@@ -129,11 +161,11 @@ myForm2.onsubmit = (event) => {
     if(acumErrores === 0){
         let show_cohete2: HTMLDivElement = document.getElementById("show_cohete2") as HTMLDivElement;
         show_cohete2.classList.remove('invisible');
-        var cohete_ID2 = cohete.id.toUpperCase();
-        var text = `El Cohete ${cohete_ID2} tiene ${num_propulsores2.value} propulsores.`;
-        showCohete2(text);
+        let cohete_ID2 = cohete.id.toUpperCase();
+        createPotencia2(text, cohete_ID2, num_propulsores2.value);
         id2.value = '';
         num_propulsores2.value = '';
+        myForm2.classList.add('d-none');
     }
 
 event.preventDefault()
