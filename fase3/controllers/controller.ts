@@ -1,11 +1,17 @@
-let cohete: Cohete;
+let cohete1: Cohete;
+let cohete2: Cohete;
+let propulsorCreado: Propulsor;
 let text:any;
 
 //Creación de funciones necesarias para crear y mostrar cohete
-function createCohete(id:any ){
-    cohete = new Cohete(id);
-    console.log(cohete);
-    return cohete;
+function createCohete1(id:any ){
+    cohete1 = new Cohete(id);
+    return cohete1;
+}
+
+function createCohete2(id:any ){
+    cohete2 = new Cohete(id);
+    return cohete2;
 }
 
 let showCohete1 = (text: string)=>{
@@ -30,12 +36,15 @@ let createPotencia1 = (text: any, id:any, propulsores: any) =>{
     text = `${id}: `;
     for(i = 1; i <= num_prop; i++){
         let potencia:any = prompt(`Introduce potencia del propulsor ${i}`);
+        let propulsorCreado = new Propulsor(parseInt(potencia));
+        cohete1.createPropulsor(propulsorCreado);
         if(i === num_prop){
             text += potencia + '.';
         }else{
             text += potencia + ', ';
         }
     }
+    cohete1.calcularPotenciaMax();
     showCohete1(text);
 }
 
@@ -45,15 +54,18 @@ let createPotencia2 = (text: any, id:any, propulsores: any) =>{
     text = `${id}: `;
     for(i = 1; i <= num_prop; i++){
         let potencia:any = prompt(`Introduce potencia del propulsor ${i}`);
+        let propulsorCreado = new Propulsor(parseInt(potencia));
+        cohete2.createPropulsor(propulsorCreado);
         if(i == num_prop){
             text += potencia + '.';
         }else{
             text += potencia + ', ';
         }
     }
+
+    cohete2.calcularPotenciaMax();
     showCohete2(text);
 }
-
 
 //CREACION VARIABLES Y ASIGNACION
 
@@ -84,13 +96,13 @@ myForm.onsubmit = (event) => {
     if (acumErrores === 0){
         id.classList.remove('is-invalid');
         num_propulsores.classList.remove('is-invalid');
-        createCohete(id.value);
+        createCohete1(id.value);
 	}
 
     if(acumErrores === 0){
         let show_cohete: HTMLDivElement = document.getElementById("show_cohete") as HTMLDivElement;
         show_cohete.classList.remove('invisible');
-        let cohete_ID = cohete.getId().toUpperCase();
+        let cohete_ID = cohete1.getId().toUpperCase();
         createPotencia1(text, cohete_ID, num_propulsores.value);
         id.value = '';
         num_propulsores.value = '';
@@ -153,13 +165,13 @@ myForm2.onsubmit = (event) => {
     if (acumErrores === 0){
         id2.classList.remove('is-invalid');
         num_propulsores2.classList.remove('is-invalid');
-        createCohete(id2.value);
+        createCohete2(id2.value);
 	}
 
     if(acumErrores === 0){
         let show_cohete2: HTMLDivElement = document.getElementById("show_cohete2") as HTMLDivElement;
         show_cohete2.classList.remove('invisible');
-        let cohete_ID2 = cohete.getId().toUpperCase();
+        let cohete_ID2 = cohete2.getId().toUpperCase();
         createPotencia2(text, cohete_ID2, num_propulsores2.value);
         id2.value = '';
         num_propulsores2.value = '';

@@ -44,18 +44,17 @@ myForm.onsubmit = (event) => {
 		acumErrores ++;
     }
 
+//Crear cohete y mostrar en DOM
     if (acumErrores === 0){
         id.classList.remove('is-invalid');
         num_propulsores.classList.remove('is-invalid');
+        createCohete(id.value);
 	}
-
-//Crear cohete y mostrar en DOM
-    createCohete(id.value);
 
     if(acumErrores === 0){
         let show_cohete: HTMLDivElement = document.getElementById("show_cohete") as HTMLDivElement;
         show_cohete.classList.remove('invisible');
-        let cohete_ID = cohete.id.toUpperCase();
+        let cohete_ID = cohete.getId().toUpperCase();
         let text = `El Cohete ${cohete_ID} tiene ${num_propulsores.value} propulsores.`;
         showCohete(text);
         id.value = '';
