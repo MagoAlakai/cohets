@@ -5,7 +5,7 @@ let propulsorCreado: Propulsor;
 let text:any;
 let cohetes: Array<Cohete> = new Array;
 let coheteID:string;
-
+let index:number;
 
 //Creación de funciones necesarias para crear y mostrar cohete
 
@@ -87,6 +87,7 @@ let showCohete = ()=>{
     while(!boleano && i < cohetes.length){
         if(coheteID === cohetes[i].getId()){
             text = `${cohetes[i].getId()}: `;
+            index = i + 1;
             boleano = true;
             if(show_cohete.className === "border container mt-5 pb-2 mb-5 invisible"){
                 let p:number = 0;
@@ -98,9 +99,10 @@ let showCohete = ()=>{
                     }
                 }
                 show_cohete.classList.remove('invisible');
+                (<HTMLElement>document.getElementById("coheteTitulo")).textContent = `Cohete ${i + 1} - Id y Propulsores: `;
                 coheteProperties.appendChild(createList(text));
             }else{
-                text = `La potencia actual es de ${cohetes[i].getPotenciaActual()}: `;
+                text = `La potencia actual es de ${cohetes[i].getPotenciaActual()}.`;
                 coheteProperties.appendChild(createList(text));
             }
         }else{

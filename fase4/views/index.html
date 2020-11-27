@@ -48,7 +48,7 @@
     </div>
     <!-- Botones de acelerar, frenar y mostrar cohetes-->
     <div class="border container mt-5 pb-2 mb-5 invisible" id="botonesVarios">
-        <div id="botonesAcelerarFrenar" class="d-flex">
+        <div class="mb-2" id="coheteOrden"></div>
             <button type="button" id="acelerarCohete1" class="btn btn-secondary m-3" onclick="acelerarCohete()">Acelerar Cohete</button>
             <button type="button" id="frenarCohete1" class="btn btn-secondary m-3" onclick="frenarCohete()">Frenar Cohete</button>
             <button type="button" id="imprimirCohete" class="btn btn-secondary m-3" onclick="showCohete()">Imprimir Cohete</button>
@@ -56,7 +56,7 @@
     </div>
     <!--Mostrar Cohetes-->
     <div class="border container mt-5 pb-2 mb-5 invisible" id="show_cohete">
-        <h6 class="pt-3">Cohete:</h6>
+        <h6 id="coheteTitulo" class="pt-3"></h6>
         <div class="row ml-4">
             <div id="col"></div>
         </div>
