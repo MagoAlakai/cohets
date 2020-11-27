@@ -88,7 +88,7 @@ let showCohete = ()=>{
         if(coheteID === cohetes[i].getId()){
             text = `${cohetes[i].getId()}: `;
             boleano = true;
-            if(show_cohete.className === "border container mt-4 pb-2 mb-5 invisible"){
+            if(show_cohete.className === "border container mt-5 pb-2 mb-5 invisible"){
                 let p:number = 0;
                 for(p ; p < cohetes[i].propulsores.length; p++){
                     if(p === cohetes[i].propulsores.length -1){
