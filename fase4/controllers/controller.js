@@ -4,7 +4,6 @@ var propulsorCreado;
 var text;
 var cohetes = new Array;
 var coheteID;
-var index;
 //Creación de funciones necesarias para crear y mostrar cohete
 //Mostrar el form de cohetes
 var showCreateCohete = function () {
@@ -81,7 +80,6 @@ var showCohete = function () {
     while (!boleano && i < cohetes.length) {
         if (coheteID === cohetes[i].getId()) {
             text = cohetes[i].getId() + ": ";
-            index = i + 1;
             boleano = true;
             if (show_cohete.className === "border container mt-5 pb-2 mb-5 invisible") {
                 var p = 0;
