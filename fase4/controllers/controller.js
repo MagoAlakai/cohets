@@ -1,14 +1,17 @@
+//Variables globales
 var cohete;
 var propulsorCreado;
 var text;
 var cohetes = new Array;
 var coheteID;
 //Creación de funciones necesarias para crear y mostrar cohete
+//Mostrar el form de cohetes
 var showCreateCohete = function () {
     var showCreateCohete = document.getElementById('showCreateCohete');
     showCreateCohete.classList.add('d-none');
     myForm.classList.remove('d-none');
 };
+//Crear cohetes y propulsores
 var createCohete = function (id) {
     cohete = new Cohete(id);
     cohetes.push(cohete);
@@ -41,6 +44,7 @@ var createPotencia = function (id, num_propulsores) {
     }
     cohete.calcularPotenciaMax();
 };
+//Comportamiento de los cohetes
 var acelerarCohete = function () {
     var i = 0;
     var boleano = false;
@@ -67,6 +71,7 @@ var frenarCohete = function () {
         }
     }
 };
+//Mostrar por pantalla 
 var showCohete = function () {
     var i = 0;
     var boleano = false;
@@ -119,7 +124,7 @@ var muestraBotones = function (event) {
     show_cohete.classList.add('invisible');
     coheteProperties.textContent = '';
 };
-//CREACION VARIABLES Y ASIGNACION
+//CREACION VARIABLES Y ASIGNACION FORMULARIO
 //Recogida de datos del formulario Cohete
 var myForm = document.getElementById('myFormId');
 var id = document.getElementById('id_cohete');
@@ -167,67 +172,3 @@ var verifyCohete = function (event) {
     }
 };
 myForm.addEventListener('blur', verifyCohete, true);
-//COHETE 2
-//CREACION VARIABLES Y ASIGNACION
-//Recogida de datos del formulario Cohete
-/*let myForm2 = (<HTMLFormElement>document.getElementById('myFormId2'));
-let id2: HTMLInputElement = (document.getElementById('id_cohete2') as HTMLInputElement);
-let num_propulsores2: HTMLInputElement = (document.getElementById('num_propulsores2') as HTMLInputElement);
-
-
-//ONSUBMIT DE FORM COHETE 2 Y CONTROL
-myForm2.onsubmit = (event) => {
-    let acumErrores = 0;
-
-    if(id2.value.length !== 9){
-        id2.classList.add('is-invalid');
-        (<HTMLElement>document.getElementById("errorId_cohete2")).textContent = "El Id debe ser de 9 caracteres";
-        acumErrores ++;
-    }
-
-    if(num_propulsores2.value == "") {
-        num_propulsores2.classList.add('is-invalid');
-        (<HTMLElement>document.getElementById("errorNum_propulsores2")).textContent = "Este campo es obligatorio";
-        acumErrores ++;
-    }
-
-//Crear cohete 2 y mostrar en DOM
-    if (acumErrores === 0){
-        id2.classList.remove('is-invalid');
-        num_propulsores2.classList.remove('is-invalid');
-        createCohete2(id2.value);
-    }
-
-    if(acumErrores === 0){
-        let cohete_ID2 = cohete2.getId().toUpperCase();
-        createPotencia2(text, cohete_ID2, num_propulsores2.value);
-        id2.value = '';
-        num_propulsores2.value = '';
-        myForm2.classList.add('d-none');
-        let showBotones: HTMLDivElement = document.getElementById("botonesvarios") as HTMLDivElement;
-        showBotones.classList.remove('invisible');
-    }
-
-event.preventDefault()
-}
-
-//EVENT LISTENER COHETE 2
-
-let verifyCohete2 = (event:any)=>{
-
-    if((<HTMLInputElement>event.target).value.length !== 9 && (<HTMLInputElement>event.target).value === id2.value) {
-        id2.classList.add('is-invalid');
-        (<HTMLElement>document.getElementById("errorId_cohete2")).textContent = "El Id debe ser de 9 caracteres";
-    }else{
-        (<HTMLElement>event.target).classList.remove('is-invalid');
-    }
-
-    if((<HTMLInputElement>event.target).value ==='' &&  (<HTMLInputElement>event.target).value === num_propulsores2.value){
-        (<HTMLElement>event.target).classList.add('is-invalid');
-        (<HTMLElement>document.getElementById("errorNum_propulsores2")).textContent = "Este campo es obligatorio";
-    }else{
-        (<HTMLElement>event.target).classList.remove('is-invalid');
-    }
-}
-
-myForm2.addEventListener('blur', verifyCohete2, true);*/
